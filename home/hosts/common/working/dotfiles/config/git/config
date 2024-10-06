@@ -1,0 +1,42 @@
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  editor = vi
+  autocrlf = input
+  safecrlf = false
+  excludesfile = ~/.config/git/ignore
+[alias]
+  br = branch
+  ci = commit
+  co = checkout
+  di = diff
+  dr = diff --patience -w --word-diff-regex='\\S+'
+  st = status
+  lg = log --color --pretty=format:'%Cred%h %C(bold blue)%<(30,trunc)%an %C(green)%>(12,trunc)%cr %Creset - %s %Creset' --abbrev-commit
+[diff]
+  algorithm = patience
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[mergetool]
+  keepBackup = false
+[mergetool "vimdiff"]
+  cmd = nvim -dO $LOCAL $BASE $REMOTE $MERGED -c 'wincmd l' -c 'wincmd l' -c 'wincmd l' -c 'wincmd J'
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+[includeIf "gitdir/i:~/code/juno/"]
+  path = config-juno
+[includeIf "gitdir/i:~/code/janus/"]
+  path = config-janus
+[includeIf "gitdir/i:~/code/jaxxr/"]
+  path = config-jaxxr
+[includeIf "gitdir/i:~/.nixconfig/"]
+  path = config-jaxxr
